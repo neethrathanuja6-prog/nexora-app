@@ -127,7 +127,7 @@ export default function Auth({ onLoginSuccess }) {
 
     if (!isLogin && passwordMismatch) {
       setErrorMessage('Passwords do not match');
-      return;
+    return;
     }
 
     setIsLoading(true);
@@ -135,14 +135,13 @@ export default function Auth({ onLoginSuccess }) {
     try {
       if (isLogin) {
         // MySQL Login API Call
-        const res = await fetch('https://most-fanciness-moonscape.ngrok-free.dev/api/login', {
-  method: 'POST',
-  headers: { 
-    'Content-Type': 'application/json',
-    'ngrok-skip-browser-warning': 'true' // මෙන්න මේ Header පේළිය එකතු කරන්න
-  },
-  body: JSON.stringify({ email, password })
-});
+        const res = await fetch('https://nexora-app-production-a248.up.railway.app/api/login', {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email, password })
+        });
 
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || 'Login failed');
@@ -164,14 +163,13 @@ export default function Auth({ onLoginSuccess }) {
           subjects: subjects.filter(s => s.name.trim() !== '')
         };
 
-        const res = await fetch('https://most-fanciness-moonscape.ngrok-free.dev/api/register', {
-    method: 'POST',
-     headers: { 
-    'Content-Type': 'application/json',
-    'ngrok-skip-browser-warning': 'true' // මෙන්න මේ Header පේළිය එකතු කරන්න
-  },
-  body: JSON.stringify({ email, password })
-});
+        const res = await fetch('https://nexora-app-production-a248.up.railway.app/api/register', {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
 
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || 'Registration failed');
