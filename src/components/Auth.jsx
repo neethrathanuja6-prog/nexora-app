@@ -167,6 +167,7 @@ export default function Auth({ onLoginSuccess }) {
   body: JSON.stringify(payload)
 });
 
+
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || 'Registration failed');
 
