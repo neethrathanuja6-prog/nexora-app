@@ -135,13 +135,11 @@ export default function Auth({ onLoginSuccess }) {
     try {
       if (isLogin) {
         // MySQL Login API Call
-        const res = await fetch('https://nexora-app-production-a248.up.railway.app/api/login', {
-          method: 'POST',
-          headers: { 
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ email, password })
-        });
+      const res = await fetch('/api/login', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ email, password })
+});
 
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || 'Login failed');
@@ -163,13 +161,11 @@ export default function Auth({ onLoginSuccess }) {
           subjects: subjects.filter(s => s.name.trim() !== '')
         };
 
-        const res = await fetch('https://nexora-app-production-a248.up.railway.app/api/register', {
-          method: 'POST',
-          headers: { 
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(payload)
-        });
+     const res = await fetch('/api/register', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify(payload)
+});
 
         const data = await res.json();
         if (!res.ok) throw new Error(data.error || 'Registration failed');

@@ -176,6 +176,15 @@ app.delete('/api/schedules/:id', async (req, res) => {
 });
 
 const PORT = 5000;
+const path = require('path');
+
+// Frontend static files serve කිරීම
+app.use(express.static(path.join(__dirname, 'dist')));
+
+// ඕනෑම Route එකකට ආවොත් React App එකේ index.html එක ලබාදීම
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
 app.listen(PORT, () => {
   console.log(`🚀 NEXORA Backend Server running on http://localhost:${PORT}`);
 });
